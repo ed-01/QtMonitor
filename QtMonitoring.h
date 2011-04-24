@@ -1,19 +1,28 @@
 #ifndef QTMONITORING_H
 #define QTMONITORING_H
 
-#include <QtGui/QWidget>
+#include <QtGui>
 #include "ui_QtMonitoring.h"
+
+#include <iostream>
+using namespace std;
 
 class QtMonitoring : public QWidget
 {
     Q_OBJECT
 
-public:
-    QtMonitoring(QWidget *parent = 0);
-    ~QtMonitoring();
+	public:
+		QtMonitoring(QWidget *parent = 0);
+		~QtMonitoring();
 
-private:
-    Ui::QtMonitoringClass ui;
+	private:
+		QPushButton *btnStart;
+		QPushButton *btnStop;
+		Ui::QtMonitoringClass ui;
+
+	private slots:
+		void startMonitoring();
+		void stopMonitoring();
 };
 
 #endif // QTMONITORING_H

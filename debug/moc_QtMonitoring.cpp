@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'QtMonitoring.h'
 **
-** Created: Sun Apr 24 08:29:22 2011
+** Created: Sun Apr 24 11:02:54 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,18 +23,23 @@ static const uint qt_meta_data_QtMonitoring[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: signature, parameters, type, tag, flags
+      14,   13,   13,   13, 0x08,
+      32,   13,   13,   13, 0x08,
+
        0        // eod
 };
 
 static const char qt_meta_stringdata_QtMonitoring[] = {
-    "QtMonitoring\0"
+    "QtMonitoring\0\0startMonitoring()\0"
+    "stopMonitoring()\0"
 };
 
 const QMetaObject QtMonitoring::staticMetaObject = {
@@ -64,6 +69,14 @@ int QtMonitoring::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: startMonitoring(); break;
+        case 1: stopMonitoring(); break;
+        default: ;
+        }
+        _id -= 2;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE
