@@ -5,6 +5,7 @@ QtMonitoring::QtMonitoring(QWidget *parent) : QWidget(parent)
 	ui.setupUi(this);
 
 	infoThread = new InfoThread();
+	memInfo = new MemoryInfo("/proc/meminfo");
 
 	QHBoxLayout *controlLayout = new QHBoxLayout;
 
@@ -46,4 +47,10 @@ void QtMonitoring::stopMonitoring()
 void QtMonitoring::handleTimeExpired()
 {
 	cout << "handleTimeExpired" << endl;
+
+	// do memory monitoring
+	this->memInfo->update();
+	printf("Total memory: \t%llu\tKB\n", this->memInfo->getTotalMemory());
+	printf("Used memory: \t%llu\tKB\n", this->memInfo->getUsedMemory());
+	printf("Free memory: \t%llu\tKB\n", this->memInfo->getFreeMemory());
 }
