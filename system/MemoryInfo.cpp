@@ -7,10 +7,14 @@
 
 #include "MemoryInfo.h"
 
+#ifdef _TTY_POSIX
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#else
+	// windows
+#endif
 
 MemoryInfo::MemoryInfo(QString path) : QObject()
 {
@@ -21,21 +25,25 @@ MemoryInfo::~MemoryInfo() {}
 
 void MemoryInfo::update()
 {
-	cout << "MemoryInfo->path: " << this->path.toStdString() << endl;
+	qDebug() << "MemoryInfo: path=" << this->path;
 
+#ifdef _TTY_POSIX
 // todo: rework => (ed)
-
+	// linux
 	int fd;
 	size_t n;
 	int bufferSize = 2048;
 
 	if ((fd = open( "/proc/meminfo", O_RDONLY)) < 0) {
-	    cout << "Cannot open file: " << this->path.toStdString() << endl;
+	    qDebug() << "MemoryInfo: cannot open file: " << this->path.toStdString() << endl;
+	    this->total = 0;
+	    this->free = 0;
+	    this->used = 0;
 	} else {
 		char memInfoBuffer[bufferSize];
 		n = read(fd, memInfoBuffer, bufferSize-1);
 		if (n == bufferSize-1 || n <= 0)
-		    cout << "Buffer too small to read: " << this->path.toStdString() << endl;
+		    qDebug() << "MemoryInfo: buffer too small to read: " << this->path.toStdString() << endl;
 
 		close(fd);
 
@@ -44,6 +52,12 @@ void MemoryInfo::update()
 		this->used = this->total - this->free;
 	}
 // <= todo: rework (ed)
+#else
+	// windows
+    this->total = 0;
+    this->free = 0;
+    this->used = 0;
+#endif
 }
 
 void MemoryInfo::scanOne(char* buff, char *key, unsigned long long* val)

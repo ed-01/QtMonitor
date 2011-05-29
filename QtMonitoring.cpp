@@ -1,6 +1,13 @@
+/*
+ * QtMonitoring.cpp
+ *
+ *  Created on: 25.04.2011
+ *      Author: ed
+ */
+
 #include "QtMonitoring.h"
 
-QtMonitoring::QtMonitoring(QWidget *parent) : QWidget(parent)
+QtMonitoring::QtMonitoring() : QWidget()
 {
 	ui.setupUi(this);
 
@@ -28,7 +35,7 @@ QtMonitoring::~QtMonitoring() {}
 
 void QtMonitoring::startMonitoring()
 {
-	cout << "Starting monitoring..." << endl;
+	qDebug() << "Starting monitoring...";
 	btnStart->setEnabled(FALSE);
 	btnStop->setEnabled(TRUE);
 
@@ -37,7 +44,7 @@ void QtMonitoring::startMonitoring()
 
 void QtMonitoring::stopMonitoring()
 {
-	cout << "Stopping monitoring..." << endl;
+	qDebug() << "Stopping monitoring...";
 	btnStart->setEnabled(TRUE);
 	btnStop->setEnabled(FALSE);
 
@@ -46,11 +53,9 @@ void QtMonitoring::stopMonitoring()
 
 void QtMonitoring::handleTimeExpired()
 {
-	cout << "handleTimeExpired" << endl;
-
 	// do memory monitoring
 	this->memInfo->update();
-	printf("Total memory: \t%llu\tKB\n", this->memInfo->getTotalMemory());
-	printf("Used memory: \t%llu\tKB\n", this->memInfo->getUsedMemory());
-	printf("Free memory: \t%llu\tKB\n", this->memInfo->getFreeMemory());
+	qDebug() << "Total memory: " << this->memInfo->getTotalMemory() << " KB";
+	qDebug() << "Used memory:  " << this->memInfo->getUsedMemory() << " KB";
+	qDebug() << "Free memory:  " << this->memInfo->getFreeMemory() << " KB";
 }

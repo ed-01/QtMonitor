@@ -9,9 +9,7 @@
 #define MEMORYINFO_H_
 
 #include <QtGui>
-
-#include <iostream>
-using namespace std;
+#include <QtDebug>
 
 class MemoryInfo : public QObject
 {
@@ -30,6 +28,5 @@ class MemoryInfo : public QObject
 		unsigned long long total, free, used;
 		void scanOne(char* buff, char *key, unsigned long long* val);
 };
-
 
 #endif /* MEMORYINFO_H_ */

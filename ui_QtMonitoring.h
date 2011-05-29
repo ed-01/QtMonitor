@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'QtMonitoring.ui'
 **
-** Created: Sun Apr 24 08:29:06 2011
-**      by: Qt User Interface Compiler version 4.6.2
+** Created: Sun 29. May 20:59:36 2011
+**      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
